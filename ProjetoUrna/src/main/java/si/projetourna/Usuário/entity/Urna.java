@@ -8,12 +8,11 @@ package si.projetourna.Usuário.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 /**
@@ -28,15 +27,13 @@ public class Urna implements Serializable {
     @Column(name = "ID", length = 100, nullable = false, unique = true)
     private long Id;
     
-    @PrimaryKeyJoinColumn(foreignKey = @ForeignKey)
-    @OneToOne    
-    @Column(name = "Eleitor", length = 100, nullable = false, unique = true)
-    private long eleitor;
-    
-    @PrimaryKeyJoinColumn(foreignKey = @ForeignKey)
+    @JoinColumn
     @OneToOne
-    @Column(name = "caditato", length = 100, nullable = false, unique = true)
-    private long candidato;
+    private Eleitor eleitor;
+    
+    @JoinColumn
+    @OneToOne
+    private Candidato candidato;
     
     /**
      *  Construtor vazio para o sistema.
@@ -50,7 +47,7 @@ public class Urna implements Serializable {
      * @param eleitor
      * @param candidato 
      */
-    public Urna(long Id, long eleitor, long candidato) {
+    public Urna(long Id, Eleitor eleitor, Candidato candidato) {
         this.Id = Id;
         this.eleitor = eleitor;
         this.candidato = candidato;
@@ -64,19 +61,19 @@ public class Urna implements Serializable {
         this.Id = Id;
     }
 
-    public long getEleitor() {
+    public Eleitor getEleitor() {
         return eleitor;
     }
 
-    public void setEleitor(long eleitor) {
+    public void setEleitor(Eleitor eleitor) {
         this.eleitor = eleitor;
     }
 
-    public long getCandidato() {
+    public Candidato getCandidato() {
         return candidato;
     }
 
-    public void setCandidato(long candidato) {
+    public void setCandidato(Candidato candidato) {
         this.candidato = candidato;
     }
     

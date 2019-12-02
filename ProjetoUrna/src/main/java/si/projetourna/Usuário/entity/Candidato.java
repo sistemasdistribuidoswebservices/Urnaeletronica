@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -33,6 +35,11 @@ public class Candidato implements Serializable {
     
     @Column(name = "Partido", length = 100, nullable = false, unique = true)
     private String partido;
+    
+    @JoinColumn
+    @OneToOne
+    public Role role;
+  
     /**
      * 
      */
@@ -44,12 +51,14 @@ public class Candidato implements Serializable {
      * @param nome
      * @param cargo
      * @param partido 
+     * @param role 
      */
-    public Candidato(long Id, String nome, String cargo, String partido) {
+    public Candidato(long Id, String nome, String cargo, String partido,Role role) {
         this.Id = Id;
         this.nome = nome;
         this.cargo = cargo;
         this.partido = partido;
+        this.role = role;
     }
 
     public void setId(int Id) {
@@ -82,6 +91,14 @@ public class Candidato implements Serializable {
 
     public void setPartido(String partido) {
         this.partido = partido;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
     
     

@@ -6,13 +6,14 @@
 package si.projetourna.Usuário.entity;
 
 import java.io.Serializable;
-import java.util.Set;
-import javax.management.relation.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,15 +29,15 @@ public class Eleitor implements Serializable {
     @Column(name = "ID", length = 100, nullable = false, unique = true)
     private long ID;
     
-    @Column(name = "E-MAIL", length = 100, nullable = false, unique = true)
+    @Column(name = "MAIL", length = 100, nullable = false, unique = true)
     private String email;
     
     @Column(name = "SENHA", length = 100, nullable = false, unique = true)
     private String senha;
     
-    @OneToOne
-    @Column(name = "ROLE", length = 2, nullable = false, unique = true)
-    private Set<Role> role;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "Role", length = 1, nullable = false, unique = true)
+    public Role role;
     /**
      * 
      */
@@ -49,7 +50,7 @@ public class Eleitor implements Serializable {
      * @param senha
      * @param role 
      */
-    public Eleitor(long ID, String email, String senha, Set<Role> role) {
+    public Eleitor(long ID, String email, String senha, Role role) {
         this.ID = ID;
         this.email = email;
         this.senha = senha;
@@ -79,6 +80,15 @@ public class Eleitor implements Serializable {
     public void setID(long ID) {
         this.ID = ID;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+    
     
     
 }

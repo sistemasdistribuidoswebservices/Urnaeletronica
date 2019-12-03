@@ -31,6 +31,7 @@ public class Urna implements Serializable {
     @OneToOne
     private Eleitor eleitor;
     
+    
     @JoinColumn(nullable = false, unique = true)
     @OneToOne
     private Candidato candidato;

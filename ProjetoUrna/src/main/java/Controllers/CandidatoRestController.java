@@ -21,7 +21,7 @@ import si.projetourna.Usuário.entity.repository.CandidatoRepository;
  * @author Alvaro
  */
 @RestController
-public class CandidatoController {
+public class CandidatoRestController {
     @Autowired
     CandidatoRepository candController;
     Candidato candidato, candidator;
@@ -39,7 +39,6 @@ public class CandidatoController {
         
         candidato = new Candidato(nome, cargo, partido, Role.Candidato);
         candController.save(candidato);
-        candController.findById(1);
        return candidato;         
     }
 }

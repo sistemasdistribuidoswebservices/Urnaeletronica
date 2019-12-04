@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Table(name = "ELEITOR")
 public class Eleitor implements Serializable {
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "ID", length = 100, nullable = false, unique = true)
     private long ID;
     

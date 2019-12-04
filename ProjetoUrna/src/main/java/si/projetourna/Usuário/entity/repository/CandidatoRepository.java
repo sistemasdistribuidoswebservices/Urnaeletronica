@@ -14,4 +14,6 @@ import si.projetourna.Usuário.entity.Candidato;
  */
 public interface CandidatoRepository extends JpaRepository<Candidato,Long>{
     
+    Candidato findByNome(String nome);
+    Candidato findByCargo(String cargo);
 }

@@ -14,6 +14,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 /**
  *
@@ -23,17 +25,23 @@ import javax.persistence.Table;
 @Table(name = "CANDIDATO")
 public class Candidato implements Serializable {
     @Id
-    @GeneratedValue( strategy = GenerationType.AUTO)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "ID", length = 100, nullable = false, unique = true)
     private long Id;
     
     @Column(name = "NOME", length = 100, nullable = false, unique = true)
+    @NotNull(message = "Nome é obrigatório")
+    @Length (min=1, max = 255, message = "O campo deve estar entre 1 e 255 caracteres")
     private String nome;
     
     @Column(name = "Cargo", length = 100, nullable = false)
+    @NotNull(message = "Cargo é obrigatório")
+    @Length (min=1, max = 255, message = "O campo deve estar entre 1 e 255 caracteres")
     private String cargo;
     
     @Column(name = "Partido", length = 100, nullable = false)
+    @NotNull(message = "Partido é  obrigatório")
+    @Length (min=1, max = 255, message = "O campo deve estar entre 1 e 255 caracteres")
     private String partido;
     
     

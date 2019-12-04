@@ -1,0 +1,9 @@
+si\projetourna\Usuário\entity\Role.class
+si\projetourna\config\DataInitilizr.class
+si\projetourna\ProjetournaApplication.class
+si\projetourna\Usuário\entity\repository\UrnaRepository.class
+si\projetourna\Usuário\entity\Candidato.class
+si\projetourna\Usuário\entity\Urna.class
+si\projetourna\Usuário\entity\repository\CandidatoRepository.class
+si\projetourna\Usuário\entity\repository\EleitorRepository.class
+si\projetourna\Usuário\entity\Eleitor.class

@@ -26,17 +26,14 @@ public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent>
     @Autowired
     CandidatoRepository canrepo;
     
-    @Autowired
-    UrnaRepository urrepo;
         
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
          //To change body of generated methods, choose Tools | Templates.
          List<Candidato> Candidatos = canrepo.findAll();
         List<Eleitor> Eleitores = elrepo.findAll();
-        List<Urna> Votos = urrepo.findAll();
 
-        if (Eleitores.isEmpty() || Candidatos.isEmpty()|| Votos.isEmpty()){
+        if (Eleitores.isEmpty() || Candidatos.isEmpty()){
             System.out.println("banco vazio");
             Eleitor eleitor = new Eleitor("alvaropereira15@gmail.com","12341234");
             Eleitores.add(eleitor);

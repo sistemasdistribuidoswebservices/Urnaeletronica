@@ -8,6 +8,8 @@ package si.projetourna.Usuário.entity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,13 +30,15 @@ public class Candidato implements Serializable {
     @Column(name = "NOME", length = 100, nullable = false, unique = true)
     private String nome;
     
-    @Column(name = "Cargo", length = 100, nullable = false, unique = true)
+    @Column(name = "Cargo", length = 100, nullable = false)
     private String cargo;
     
-    @Column(name = "Partido", length = 100, nullable = false, unique = true)
+    @Column(name = "Partido", length = 100, nullable = false)
     private String partido;
     
-
+    
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "Role", length = 2, nullable = false)
     public Role role;
   
     /**
@@ -64,11 +68,11 @@ public class Candidato implements Serializable {
      * @param partido
      * @param role
      */
-    public Candidato(String nome, String cargo, String partido, Role role) {
+    public Candidato(String nome, String cargo, String partido) {
         this.nome = nome;
         this.cargo = cargo;
         this.partido = partido;
-        this.role = role;
+        this.role = Role.Candidato;
     }
     
     

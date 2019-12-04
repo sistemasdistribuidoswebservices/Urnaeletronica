@@ -57,6 +57,14 @@ public class Eleitor implements Serializable {
         this.role = role;
     }
 
+    public Eleitor(String email, String senha) {
+        this.email = email;
+        this.senha = senha;
+        this.role = Role.Eleitor;
+    }
+    
+    
+    
     public String getEmail() {
         return email;
     }

@@ -26,11 +26,14 @@ import javax.persistence.Table;
 public class Eleitor implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", length = 100, nullable = false, unique = true)
-    private long ID;
+    @Column(name = "ID", length = 100)
+    private long id;
     
     @Column(name = "MAIL", length = 100, nullable = false, unique = true)
     private String email;
+    
+    @Column(name = "nome", length = 100, nullable = false, unique = true)
+    private String nome;
     
     @Column(name = "SENHA", length = 100, nullable = false, unique = true)
     private String senha;
@@ -46,19 +49,27 @@ public class Eleitor implements Serializable {
     /**
      * 
      * @param ID
+     * @param nome
      * @param email
-     * @param senha
-     * @param role 
+     * @param senha 
      */
-    public Eleitor(long ID, String email, String senha, Role role) {
-        this.ID = ID;
+    public Eleitor(long ID, String nome, String email, String senha) {
+        this.id = ID;
         this.email = email;
+        this.nome = nome;
         this.senha = senha;
-        this.role = role;
+        this.role = Role.Eleitor;
     }
-
-    public Eleitor(String email, String senha) {
+    
+    /**
+     * 
+     * @param nome
+     * @param email
+     * @param senha 
+     */
+    public Eleitor( String nome, String email,String senha) {
         this.email = email;
+        this.nome = nome;
         this.senha = senha;
         this.role = Role.Eleitor;
     }
@@ -82,11 +93,11 @@ public class Eleitor implements Serializable {
     }
 
     public long getID() {
-        return ID;
+        return id;
     }
 
     public void setID(long ID) {
-        this.ID = ID;
+        this.id = ID;
     }
 
     public Role getRole() {
@@ -95,6 +106,16 @@ public class Eleitor implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+        
+    
+}
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     

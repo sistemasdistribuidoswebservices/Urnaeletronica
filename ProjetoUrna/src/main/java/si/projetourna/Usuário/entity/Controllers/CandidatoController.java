@@ -5,12 +5,14 @@
  */
 package si.projetourna.Usuário.entity.Controllers;
 
+import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,7 +31,7 @@ public class CandidatoController {
     public CandidatoController(CandidatoRepository candidatorepository) {
         this.candidatorepository = candidatorepository;
     }
-    
+    //Visualização de todos os candidatos.
     @GetMapping("/candidatos")
     public ModelAndView getCandidato(){
         ModelAndView mv = new ModelAndView();
@@ -38,13 +40,7 @@ public class CandidatoController {
         return mv;
     }
     
-    @GetMapping("/bunda")
-    public ModelAndView home(){
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("home");
-        mv.addObject("menssagem", "messagem do controller");
-        return mv;
-    }
+    // cadastro de candidatos
     @GetMapping("/ccadastra")
     public ModelAndView cadastra(){
         ModelAndView mv = new ModelAndView();
@@ -57,17 +53,38 @@ public class CandidatoController {
     public  ModelAndView cadastra(@Valid Candidato candidatos,BindingResult result){
         ModelAndView mv = new ModelAndView();
         Candidato candidato = new Candidato(candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());
-//        Candidato candidato1 =  candidatorepository.findByNome(candidato.getNome());
-//        if (candidato != null){ result.rejectValue("nome", "","Candidato já cadastrado");}
-//        if (result.hasErrors()) {  
-//           mv.setViewName("ccadastra");
-//           mv.addObject("candidato",candidato);
-//        }else {
             candidatorepository.save(candidato);
             mv.setViewName("redirect:/candidatos");
        // }
         return mv;
     }
-            
+    // exclusão de dados do candidato
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id) {
+		candidatorepository.deleteById(id);
+		return "redirect:candidatos";
+	}
+    
+    // alteração de candidados.
+    @GetMapping("/alterar/{id}")
+	public ModelAndView alterar(@PathVariable("id") long id) {
+		ModelAndView mv = new ModelAndView();
+		Candidato candidato = candidatorepository.getOne(id);
+                mv.addObject("candidato", candidato);
+                System.out.println(candidato.getId()+" "+candidato.getNome());
+		mv.setViewName("calterar");
+		return mv;
+	}
+	
+	@PostMapping("/alterar")
+	public ModelAndView alterar(@Valid Candidato candidatos, BindingResult result) {
+		ModelAndView mv = new ModelAndView();
+                Candidato candidato = new Candidato(candidatos.getId(), candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());
+                System.out.println(candidatos);
+		candidatorepository.save(candidato);
+                mv.setViewName("redirect:/candidatos");
+		
+		return mv;
+	}
 }
 

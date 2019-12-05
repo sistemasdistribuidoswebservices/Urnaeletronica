@@ -35,7 +35,7 @@ public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent>
 
         if (Eleitores.isEmpty() || Candidatos.isEmpty()){
             System.out.println("banco vazio");
-            Eleitor eleitor = new Eleitor("alvaropereira15@gmail.com","12341234");
+            Eleitor eleitor = new Eleitor("Alvaro Pereira do nascimento","alvaropereira15@gmail.com","12341234");
             Eleitores.add(eleitor);
             elrepo.save(eleitor);
             Candidato candidato = new Candidato("alvaro", "presidente", "bundalele");

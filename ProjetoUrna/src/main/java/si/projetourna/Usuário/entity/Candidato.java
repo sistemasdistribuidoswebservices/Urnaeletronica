@@ -27,7 +27,7 @@ public class Candidato implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     @Column(name = "ID", length = 100, nullable = false, unique = true)
-    private long Id;
+    private long id;
     
     @Column(name = "NOME", length = 100, nullable = false, unique = true)
     @NotNull(message = "Nome é obrigatório")
@@ -62,12 +62,12 @@ public class Candidato implements Serializable {
      * @param partido 
      * @param role 
      */
-    public Candidato(long Id, String nome, String cargo, String partido,Role role) {
-        this.Id = Id;
+    public Candidato(long Id, String nome, String cargo, String partido) {
+        this.id = Id;
         this.nome = nome;
         this.cargo = cargo;
         this.partido = partido;
-        this.role = role;
+        this.role = Role.Candidato;
     }
     /**
      * 
@@ -85,12 +85,12 @@ public class Candidato implements Serializable {
     
     
 
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(long Id) {
+        this.id = Id;
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
     public String getNome() {

@@ -55,18 +55,17 @@ public class CandidatoController {
         Candidato candidato = new Candidato(candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());
             candidatorepository.save(candidato);
             mv.setViewName("redirect:/candidatos");
-       // }
         return mv;
     }
     // exclusão de dados do candidato
-    @GetMapping("/excluir/{id}")
+    @GetMapping("/cexcluir/{id}")
     public String excluir(@PathVariable("id") Long id) {
 		candidatorepository.deleteById(id);
 		return "redirect:candidatos";
 	}
     
     // alteração de candidados.
-    @GetMapping("/alterar/{id}")
+    @GetMapping("/calterar/{id}")
 	public ModelAndView alterar(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView();
 		Candidato candidato = candidatorepository.getOne(id);
@@ -76,7 +75,7 @@ public class CandidatoController {
 		return mv;
 	}
 	
-	@PostMapping("/alterar")
+	@PostMapping("/calterar")
 	public ModelAndView alterar(@Valid Candidato candidatos, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
                 Candidato candidato = new Candidato(candidatos.getId(), candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());

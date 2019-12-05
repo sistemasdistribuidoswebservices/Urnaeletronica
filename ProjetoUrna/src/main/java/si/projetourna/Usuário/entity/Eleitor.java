@@ -13,8 +13,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -35,11 +33,11 @@ public class Eleitor implements Serializable {
     @Column(name = "nome", length = 100, nullable = false, unique = true)
     private String nome;
     
-    @Column(name = "SENHA", length = 100, nullable = false, unique = true)
+    @Column(name = "SENHA", length = 100, nullable = false)
     private String senha;
     
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "Role", length = 1, nullable = false, unique = true)
+    @Column(name = "Role", length = 1, nullable = false)
     public Role role;
     /**
      * 
@@ -72,8 +70,7 @@ public class Eleitor implements Serializable {
         this.nome = nome;
         this.senha = senha;
         this.role = Role.Eleitor;
-    }
-    
+    }  
     
     
     public String getEmail() {

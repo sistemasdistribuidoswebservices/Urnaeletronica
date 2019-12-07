@@ -27,58 +27,86 @@ public class EleitorController {
     public EleitorController(EleitorRepository eleitorrepository) {
         this.eleitorrepository = eleitorrepository;
     }
-    //Visualização de todos os candidatos.
-    @GetMapping("/eleitores")
-    public ModelAndView getCandidato(){
+    //Visualização de todos os eleitor.
+    @GetMapping("/eleitor/eleitores")
+    public ModelAndView getEleitores(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("eleitores");
+        mv.setViewName("eleitores/2eleitores");
         mv.addObject("eleitorlist", eleitorrepository.findAll());
         return mv;
     }
     
-    // cadastro de candidatos
-    @GetMapping("/ecadastra")
+    //busca de somente um eleitor
+     @GetMapping("/eleitor/eleitor/{id}")
+    public ModelAndView getEleitor(@PathVariable("id") Long id){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("eleitores/eleitor");
+        mv.addObject("eleitorlist", eleitorrepository.getOne(id));
+        return mv;
+    }
+    
+    //Visualização de todos os eleitor.
+    @GetMapping("/eleitor/2eleitores")
+    public ModelAndView getEleitor2(){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("eleitores/2eleitores");
+        mv.addObject("eleitorlist", eleitorrepository.findAll());
+        return mv;
+    }
+    
+    // cadastro de eleitor
+    @GetMapping("/eleitor/ecadastra")
     public ModelAndView cadastra(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("ecadastra");
+        mv.setViewName("eleitores/ecadastra");
         mv.addObject("eleitor", new Eleitor());
         return mv;
     }
     
-    @PostMapping(value = "/ecadastra")
+    @PostMapping(value = "/eleitor/ecadastra")
     public  ModelAndView cadastra(@Valid Eleitor eleitor,BindingResult result){
         ModelAndView mv = new ModelAndView();
         Eleitor Eleitor = new Eleitor(eleitor.getNome(), eleitor.getEmail(), eleitor.getSenha());
            eleitorrepository.save(Eleitor);
-            mv.setViewName("redirect:/eleitores");
+            mv.setViewName("redirect:/eleitor/2eleitores");
         return mv;
     }
-    // exclusão de dados do candidato
-    @GetMapping("/eexcluir/{id}")
+    // exclusão de dados do eleitor
+    @GetMapping("/eleitor/eexcluir/{id}")
     public ModelAndView excluir(@PathVariable("id") Long id) {
          ModelAndView mv = new ModelAndView();
         eleitorrepository.deleteById(id);
-        mv.setViewName("redirect:/eleitores");
+        mv.setViewName("redirect:/eleitor/eleitores");
         return mv;
 	}
     
-    // alteração de candidados.
-    @GetMapping("/ealterar/{id}")
+    // alteração de eleitor.
+    @GetMapping("/eleitor/ealterar/{id}")
 	public ModelAndView alterar(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView();
 		Eleitor eleitor = eleitorrepository.getOne(id);
                 mv.addObject("eleitor", eleitor);
-		mv.setViewName("ealterar");
+		mv.setViewName("eleitores/ealterar");
 		return mv;
 	}
 	
-	@PostMapping("/ealterar")
+	@PostMapping("/eleitor/ealterar")
 	public ModelAndView alterar(@Valid Eleitor eleitor, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
                 Eleitor Eleitor = new Eleitor(eleitor.getID(), eleitor.getNome(), eleitor.getEmail(), eleitor.getSenha());
                 System.out.println(Eleitor);
 		eleitorrepository.save(Eleitor);
-                mv.setViewName("redirect:/eleitores");
+                mv.setViewName("redirect:/eleitor/2eleitores");
+		
+		return mv;
+	}
+        @PostMapping("/eleitor/2ealterar")
+	public ModelAndView alterares(@Valid Eleitor eleitor, BindingResult result) {
+		ModelAndView mv = new ModelAndView();
+                Eleitor Eleitor = new Eleitor(eleitor.getID(), eleitor.getNome(), eleitor.getEmail(), eleitor.getSenha());
+                System.out.println(Eleitor);
+		eleitorrepository.save(Eleitor);
+                mv.setViewName("redirect:/eleitor/2eleitores");
 		
 		return mv;
 	}

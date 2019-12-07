@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <br >
+        <fieldset>
+            <legend>Lista de Eleitores</legend>
+            <table border = 1>
+                <tr>
+                    <td>id</td>
+                    <td>nome</td>
+                    <td>e-mail</td>
+                    <td colspan="4  "> ações</td>
+                </tr>
+                <form   th:each= "eleitor : ${eleitorlist}">
+                        <TR>  
+                            <td th:text = "${eleitor.ID}"></td>
+                            <td th:text = " ${eleitor.nome}"></td>
+                            <td th:text = " ${eleitor.email}"></td>
+                            <td><button type="submmit" formmethod="get"  th:formaction="@{/eleitor/ealterar/{id}(id=${eleitor.ID})}" th:object="${Eleitor}">Alterar</button></td>
+                            <td><button type="submmit" formmethod="get"  th:formaction="@{/eleitor/eexcluir/{id}(id=${eleitor.ID})}" th:object="${Eleitor}">excluir</button></td>
+                        </tr>
+                </table>
+        </fieldset>
+            <input type="submit" method="get"  th:formaction="@{/eleitor/ecadastra}"  value="Novo Eleitor"/>
+          </form>
+        </br>
+    </body>
+</html>

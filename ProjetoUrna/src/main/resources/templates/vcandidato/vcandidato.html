@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <br >
         <fieldset>
-            <legend>Lista de Candidatos</legend>
+            <legend>Dados do Candidato</legend>
             <table border = 1>
                 <tr>
                     <td>id</td>
@@ -28,12 +28,11 @@ and open the template in the editor.
                             <td th:text = " ${candidato.nome}"></td>
                             <td th:text = " ${candidato.cargo}"></td>
                             <td th:text = " ${candidato.partido}"></td>
-                            <td><button type="submmit" formmethod="get"  th:formaction="@{/candidatos/alterar/{id}(id=${candidato.id})}">Alterar</button> </td>
-                            <td><button type="submmit" formmethod="get"  th:formaction="@{/candidatos/excluir/{id}(id=${candidato.id})}">excluir</button> </td>
+                            <td><button type="submmit" formmethod="get"  th:formaction="@{/candidato/alterar/{id}(id=${candidato.id})}">Alterar</button> </td>
+                            <td><button type="submmit" formmethod="get"  th:formaction="@{/candidato/excluir/{id}(id=${candidato.id})}">excluir</button> </td>
                         </tr>
                 </table>
         </fieldset>
-            <input type="submit" method="get"  th:formaction="@{/candidatos/cadastra}"  value="Novo Eleitor"/>
           </form>
         </br>
     </body>

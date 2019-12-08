@@ -13,7 +13,7 @@ and open the template in the editor.
     <body>
         <fieldset>
         <legend>Cadastro de Candidato</legend>
-        <form action="/candidato/cadastra" method="post" th:object="${candidato}">
+        <form action="/candidatos/cadastra" method="post" th:object="${candidato}">
             <div>
                 <label for="nome">Nome:</label>
                 <input type="text" id="nome" th:field="*{nome}"/>
@@ -27,7 +27,7 @@ and open the template in the editor.
             </div>
             <button type="submmit">gravar</button> 
              </fieldset>
-        <button  type= "submit" formmethod="get"  th:formaction="@{/candidato/candidatos}">Voltar</button>
+        <button  type= "submit" formmethod="get"  th:formaction="@{/candidatos/candidatos}">Voltar</button>
         </form>
     </body>
 </html>

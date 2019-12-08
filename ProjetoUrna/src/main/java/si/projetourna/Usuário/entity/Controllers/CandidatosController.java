@@ -21,37 +21,36 @@ import si.projetourna.Usuário.entity.repository.CandidatoRepository;
  */
 
 @Controller
-public class CandidatoController {
+public class CandidatosController {
     private CandidatoRepository candidatorepository;
 
     /**
      *
      * @param candidatorepository
      */
-    public CandidatoController(CandidatoRepository candidatorepository) {
+    public CandidatosController(CandidatoRepository candidatorepository) {
         this.candidatorepository = candidatorepository;
     }
     /**
-     * Visualização de somente um candidato.
-     * @param id
+     * Visualização de todos os candidatos.
      * @return  uma lista com todos os candidatos.
      */
-    @GetMapping("/candidato/candidato/{id}")
-    public ModelAndView getCandidato(@PathVariable("id") long id){
+    @GetMapping("/candidatos/candidatos")
+    public ModelAndView getCandidatos(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("vcandidato/vcandidato");
-        mv.addObject("candidatolist", candidatorepository.getOne(id));
+        mv.setViewName("/candidatos/candidatos");
+        mv.addObject("candidatolist", candidatorepository.findAll());
         return mv;
     }
         
     /**
-     * Exibe tela de cadastro de somente umcandidato.
+     * Exibe tela de cadastro de candidatos.
      * @return  tela para registro do candidato.
      */
-    @GetMapping("/candidato/cadastra")
+    @GetMapping("/candidatos/cadastra")
     public ModelAndView cadastra(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("vcandidato/vcadastra");
+        mv.setViewName("candidatos/cadastra");
         mv.addObject("candidato", new Candidato());
         return mv;
     }
@@ -61,13 +60,12 @@ public class CandidatoController {
      * @param result
      * @return 
      */
-    @PostMapping("/candidato/cadastra")
+    @PostMapping("/candidatos/cadastra")
     public  ModelAndView cadastra(@Valid Candidato candidatos,BindingResult result){
             ModelAndView mv = new ModelAndView();
             Candidato candidato = new Candidato(candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());
             candidatorepository.save(candidato);
-            Candidato ccandidato =  candidatorepository.findByNome(candidatos.getNome());
-            mv.setViewName("redirect:/candidato/candidato/"+ccandidato.getId());
+            mv.setViewName("redirect:/candidatos/candidatos");
         return mv;
     }
     /**
@@ -75,12 +73,12 @@ public class CandidatoController {
      * @param id - base de busca
      * @return  para página candidatos com o id exlcuido.
      */
-    @GetMapping("/candidato/excluir/{id}")
+    @GetMapping("/candidatos/excluir/{id}")
     public String excluir(@PathVariable("id") long id) {
         System.out.println(id);    
         candidatorepository.deleteById(id);
         System.out.println("excluido"+id);
-        return "redirect:home";
+        return "redirect:/candidatos/candidatos";
 	}
     
     /**
@@ -88,13 +86,13 @@ public class CandidatoController {
      * @param id entra com o id para  localização  
      * @return  retorna atributos necessários para carregamento de página.
      */
-    @GetMapping("/candidato/alterar/{id}")
+    @GetMapping("/candidatos/alterar/{id}")
 	public ModelAndView alterar(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView();
 		Candidato candidato = candidatorepository.getOne(id);
                 mv.addObject("candidato", candidato);
                 System.out.println(candidato.getId()+" "+candidato.getNome());
-		mv.setViewName("vcandidato/valterar");
+		mv.setViewName("candidatos/alterar");
 		return mv;
 	}
     /**
@@ -103,16 +101,16 @@ public class CandidatoController {
      * @param result
      * @return  retorna para a página dos candidados com os dados alterados.
      */
-    @PostMapping("/candidato/alterar")
+    @PostMapping("/candidatos/alterar")
     public ModelAndView alterar(@Valid Candidato candidatos, BindingResult result) {
             ModelAndView mv = new ModelAndView();
             Candidato candidato = new Candidato(candidatos.getId(), candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());
-            System.out.println(candidatos.getId());
+            System.out.println(candidatos);
             candidatorepository.save(candidato);
-            mv.setViewName("redirect:/candidato/candidato/"+candidatos.getId());
+            mv.setViewName("redirect:/candidatos/candidatos");
 
             return mv;
-    }   
+    }
     
 }
 

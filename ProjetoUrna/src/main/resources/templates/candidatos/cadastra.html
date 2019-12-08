@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xml:th = "http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <fieldset>
+        <legend>Cadastro de Candidato</legend>
+        <form action="/candidato/cadastra" method="post" th:object="${candidato}">
+            <div>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" th:field="*{nome}"/>
+            <div>
+                <label for="partido">Partido:</label>
+                <input type="text" id="partido" th:field="*{partido}"/>
+            </div>
+             <div>
+                <label for="cargo">Cargo:</label>
+                <input type="text" id="cargo" th:field="*{cargo}"/>
+            </div>
+            <button type="submmit">gravar</button> 
+             </fieldset>
+        <button  type= "submit" formmethod="get"  th:formaction="@{/candidato/candidatos}">Voltar</button>
+        </form>
+    </body>
+</html>

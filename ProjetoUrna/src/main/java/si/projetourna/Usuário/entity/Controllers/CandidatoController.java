@@ -27,51 +27,68 @@ public class CandidatoController {
     public CandidatoController(CandidatoRepository candidatorepository) {
         this.candidatorepository = candidatorepository;
     }
-    //Visualização de todos os candidatos.
+    /**
+     * Visualização de todos os candidatos.
+     * @return  uma lista com todos os candidatos.
+     */
     @GetMapping("/candidato/candidatos")
     public ModelAndView getCandidato(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("candidato/candidatos");
+        mv.setViewName("/candidatos/candidatos");
         mv.addObject("candidatolist", candidatorepository.findAll());
         return mv;
     }
     
-    // cadastro de candidatos
-    @GetMapping("/candidato/ccadastra")
+    /**
+     * Exibe tela de cadastro de candidatos.
+     * @return  tela para registro do candidato.
+     */
+    @GetMapping("/candidato/cadastra")
     public ModelAndView cadastra(){
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("candidato/ccadastra");
+        mv.setViewName("candidatos/cadastra");
         mv.addObject("candidato", new Candidato());
         return mv;
     }
-    
-    @PostMapping("/candidato/ccadastra")
+    /**
+     * Salva candidato no banco.
+     * @param candidatos
+     * @param result
+     * @return 
+     */
+    @PostMapping("/candidato/cadastra")
     public  ModelAndView cadastra(@Valid Candidato candidatos,BindingResult result){
-        ModelAndView mv = new ModelAndView();
-        Candidato candidato = new Candidato(candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());
+            ModelAndView mv = new ModelAndView();
+            Candidato candidato = new Candidato(candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());
             candidatorepository.save(candidato);
             mv.setViewName("redirect:/candidato/candidatos");
         return mv;
     }
-    // exclusão de dados do candidato
-    @GetMapping("/candidato/cexcluir/{id}")
-    public String excluir(@PathVariable("id") Long id) {
-		candidatorepository.deleteById(id);
-                    return "redirect:/candidato/candidatos";
+    /**
+     * exclusão de dados do candidato informando o id como base de busca
+     * @param id - base de busca
+     * @return  para página candidatos com o id exlcuido.
+     */
+    @GetMapping("/candidato/excluir/{id}")
+    public String excluir(@PathVariable("id") long id) {
+        System.out.println(id);    
+        candidatorepository.deleteById(id);
+        System.out.println("excluido"+id);
+        return "redirect:/candidato/candidatos";
 	}
     
     // alteração de candidados.
-    @GetMapping("/candidato/calterar/{id}")
+    @GetMapping("/candidato/alterar/{id}")
 	public ModelAndView alterar(@PathVariable("id") long id) {
 		ModelAndView mv = new ModelAndView();
 		Candidato candidato = candidatorepository.getOne(id);
                 mv.addObject("candidato", candidato);
                 System.out.println(candidato.getId()+" "+candidato.getNome());
-		mv.setViewName("candidato/calterar");
+		mv.setViewName("candidatos/alterar");
 		return mv;
 	}
 	
-	@PostMapping("candidato/calterar")
+	@PostMapping("/candidato/alterar")
 	public ModelAndView alterar(@Valid Candidato candidatos, BindingResult result) {
 		ModelAndView mv = new ModelAndView();
                 Candidato candidato = new Candidato(candidatos.getId(), candidatos.getNome(), candidatos.getCargo(), candidatos.getPartido());

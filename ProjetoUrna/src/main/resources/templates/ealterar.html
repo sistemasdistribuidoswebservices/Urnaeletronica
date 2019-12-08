@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th = "http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+       <form action="/ealterar" method="post" th:object="${eleitor}">
+           <div>
+             <input type="hidden" th:field="*{ID}">
+             <input type="hidden" th:field="*{role}">
+           </div>
+            <div>
+                <label for="nome"  >Nome:</label>
+                <input type="text" id="nome" th:field="*{nome}" readonly/>
+<!--                <div th:if="${#fields.hasErros('nome')}">
+                    <label th:erros="*{nome}" />
+                </div>    -->
+            </div>
+            <div>
+                <label for="email" >Email:</label>
+                <input type="text" id="email" th:field="*{email}" readonly/>
+<!--                <div th:if="${#fields.hasErros('partido')}">
+                    <label th:erros="*{partido}" />
+                </div>    -->
+            </div>
+             <div>
+                <label for="senha">Senha:</label>
+                <input type="text" id="senha" th:field="*{senha}"/>
+<!--                <div th:if="${#fields.hasErros('cargo')}">
+                    <label th:erros="*{cargo}" />
+                </div>    -->
+            </div>
+            <button type="submmit">gravar</button> 
+                   
+        </form>
+    </body>
+</html>

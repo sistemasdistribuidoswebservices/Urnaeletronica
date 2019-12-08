@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th = "http://www.thymeleaf.org">
+    <head>
+        <title>Candidatos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+    <body>
+        <table border = 1>
+            <tr>
+                <th>ID</th>
+                <th>nome</th>
+                <th>email</th>
+            </tr>
+            <tr th:each= "eleitor : ${eleitorlist}">
+                <td th:text = " ${eleitor.ID}"></td>
+                <td th:text = " ${eleitor.nome}"></td>
+                <td th:text = " ${eleitor.email}"></td>
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" th:text = " ${eleitor.ID}" checked>
+            </tr>
+        </table>
+    </body>
+</html>

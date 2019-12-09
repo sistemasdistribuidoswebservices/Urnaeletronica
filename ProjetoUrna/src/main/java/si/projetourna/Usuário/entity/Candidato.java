@@ -60,7 +60,6 @@ public class Candidato implements Serializable {
      * @param nome
      * @param cargo
      * @param partido 
-     * @param role 
      */
     public Candidato(long Id, String nome, String cargo, String partido) {
         this.id = Id;
@@ -74,7 +73,6 @@ public class Candidato implements Serializable {
      * @param nome
      * @param cargo
      * @param partido
-     * @param role
      */
     public Candidato(String nome, String cargo, String partido) {
         this.nome = nome;

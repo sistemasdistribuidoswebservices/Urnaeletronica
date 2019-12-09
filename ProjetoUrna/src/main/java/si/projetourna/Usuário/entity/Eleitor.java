@@ -39,6 +39,7 @@ public class Eleitor implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "Role", length = 1, nullable = false)
     public Role role;
+    
     /**
      * 
      */

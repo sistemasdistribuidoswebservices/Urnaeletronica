@@ -6,9 +6,6 @@
 package si.projetourna.Usuário.entity.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import si.projetourna.Usuário.entity.Candidato;
 import si.projetourna.Usuário.entity.Eleitor;
 
 /**
@@ -17,10 +14,6 @@ import si.projetourna.Usuário.entity.Eleitor;
  */
 public interface EleitorRepository extends JpaRepository<Eleitor,Long>{
     
-    Candidato findByNome(String nome);
-    Candidato findByEmail(String email);
-    @Modifying
-    @Query(value = "\"UPDATE eleitor SET u.nome = ?2,  u.cargo = ?3, u.partido = ?4 WHERE u.id =  ?1\"", nativeQuery = true)
-    Candidato update(long id, String nome,String email, String senha);
-   
+    Eleitor findByNome(String nome);
+    Eleitor findByEmail(String email);   
 }

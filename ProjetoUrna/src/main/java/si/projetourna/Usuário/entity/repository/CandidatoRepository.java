@@ -18,6 +18,7 @@ public interface CandidatoRepository extends JpaRepository<Candidato,Long>{
     
     Candidato findByNome(String nome);
     Candidato findByCargo(String cargo);
+    Candidato findByPartido(String partido);
     @Modifying
     @Query(value = "\"UPDATE candidato SET u.nome = ?2,  u.cargo = ?3, u.partido = ?4 WHERE u.id =  ?1\"", nativeQuery = true)
     Candidato update(long id, String nome,String cargo, String partido);

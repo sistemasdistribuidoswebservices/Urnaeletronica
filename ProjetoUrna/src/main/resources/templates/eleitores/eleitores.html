@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th = "http://www.thymeleaf.org">
+    <head>
+        <title>Candidatos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+    <body>
+        <fieldset>
+            <legend>Lista de Eleitores</legend>
+            <table border = 1>
+                <tr>
+                    <th>ID</th>
+                    <th>nome</th>
+                    <th>email</th>
+                    <td colspan="3"> ações</td>
+                </tr>
+                <form  th:each= "eleitor : ${eleitorlist}">
+                <tr>
+                    <td th:text = " ${eleitor.ID}"></td>
+                    <td th:text = " ${eleitor.nome}"></td>
+                    <td th:text = " ${eleitor.email}"></td>
+                    <td><button type="submmit" formmethod="get"  th:formaction="@{/eleitores/alterar/{ID}(ID=${eleitor.ID})}">Alterar</button> </td>
+                    <td><button type="submmit" formmethod="get"  th:formaction="@{/eleitores/excluir/{ID}(ID=${eleitor.ID})}">excluir</button> </td>
+                </tr>
+            </table>
+        </fieldset>
+        <input type="submit" method="get"  th:formaction="@{/eleitores/cadastra}"  value="Novo Eleitor"/>
+    </body>
+</html>

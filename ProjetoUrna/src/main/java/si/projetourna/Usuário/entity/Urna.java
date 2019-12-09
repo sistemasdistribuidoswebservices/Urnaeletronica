@@ -27,12 +27,12 @@ public class Urna implements Serializable {
     @Column(name = "ID", length = 100, nullable = false, unique = true)
     private long Id;
     
-    @JoinColumn (nullable = false, unique = true)
+    @JoinColumn (name = "Eleitor",nullable = false, unique = true)
     @OneToOne
     private Eleitor eleitor;
     
     
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(name = "candidato",nullable = false)
     @OneToOne
     private Candidato candidato;
     
@@ -51,6 +51,28 @@ public class Urna implements Serializable {
     public Urna(long Id, Eleitor eleitor, Candidato candidato) {
         this.Id = Id;
         this.eleitor = eleitor;
+        this.candidato = candidato;
+    }
+    
+
+    /**
+     * 
+     * @param eleitor
+     * @param candidato 
+     */
+    public Urna(Eleitor eleitor, Candidato candidato) {
+        this.eleitor = eleitor;
+        this.candidato = candidato;
+    }
+    
+    /**
+     * Construtor com dados necessários para criação de acesso.
+     * @param votos
+     * @param candidato 
+     */
+    public Urna(long votos,Candidato candidato) {
+        this.Id = votos;
+        this.eleitor = null;
         this.candidato = candidato;
     }
 

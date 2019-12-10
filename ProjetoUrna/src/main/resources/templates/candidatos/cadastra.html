@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html xml:th = "http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Urna Eletrônica | Cadastro de Candidato</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
@@ -136,23 +136,27 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <fieldset>
-        <legend>Cadastro de Candidato</legend>
-        <form action="/candidatos/cadastra" method="post" th:object="${candidato}">
-            <div>
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" th:field="*{nome}"/>
-            <div>
-                <label for="partido">Partido:</label>
-                <input type="text" id="partido" th:field="*{partido}"/>
+        <div class="content">
+            <div id="cadastro">
+                <form action="/candidatos/cadastra" method="post" th:object="${candidato}">
+                    <h1>Cadastro Candidato</h1>
+                    <p>
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" placeholder="nome do candidato" th:field="*{nome}"/>
+                    </p>
+                    <p>
+                        <label for="partido">Partido:</label>
+                        <input type="text" id="partido" placeholder="nome do partido" th:field="*{partido}" />
+                    </p>
+                    <p>
+                        <label for="cargo">Cargo:</label>
+                        <input type="text" id="cargo" placeholder="ex. prefeito" th:field="*{cargo}"/>
+                    </p>
+                    <button id="gravar" type="submit">Gravar</button> 
+                        
+                <button id="voltar" type="submit" formmethod="get"  th:formaction="@{/candidatos/candidatos}">Voltar</button>
+                </form>
             </div>
-             <div>
-                <label for="cargo">Cargo:</label>
-                <input type="text" id="cargo" th:field="*{cargo}"/>
-            </div>
-            <button type="submmit">gravar</button> 
-             </fieldset>
-        <button  type= "submit" formmethod="get"  th:formaction="@{/candidatos/candidatos}">Voltar</button>
-        </form>
+        </div>
     </body>
 </html>

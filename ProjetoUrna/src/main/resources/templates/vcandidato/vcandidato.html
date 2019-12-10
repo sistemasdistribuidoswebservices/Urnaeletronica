@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Urna Eletrônica | Dados do Candidato</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
@@ -160,29 +160,31 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <br >
-        <fieldset>
-            <legend>Dados do Candidato</legend>
-            <table border = 1>
+        <h1><span class="azul">Dados do Candidato</span></h1>
+        <table class="container">
+            <thead>
                 <tr>
-                    <td>id</td>
-                    <td>nome</td>
-                    <td>cargo</td>
-                    <td>partido</td>
-                    <td colspan="3"> ações</td>
+                    <th ><h1>ID</h1></th>
+                    <th ><h1>Nome</h1></th>
+                    <th ><h1>Cargo</h1></th>
+                    <th ><h1>Partido</h1></th>
+                    <th ><h1>Alterar</h1></th>
+                    <th ><h1>Excluir</h1></th>
                 </tr>
-                <form   th:each= "candidato : ${candidatolist}">
-                        <TR>  
-                            <td th:text = "${candidato.id}"></td>
-                            <td th:text = " ${candidato.nome}"></td>
-                            <td th:text = " ${candidato.cargo}"></td>
-                            <td th:text = " ${candidato.partido}"></td>
-                            <td><button type="submmit" formmethod="get"  th:formaction="@{/candidato/alterar/{id}(id=${candidato.id})}">Alterar</button> </td>
-                            <td><button type="submmit" formmethod="get"  th:formaction="@{/candidato/excluir/{id}(id=${candidato.id})}">excluir</button> </td>
-                        </tr>
-                </table>
-        </fieldset>
-          </form>
-        </br>
-    </body>
+            </thead>
+            <tbody>
+                <form th:each= "candidato : ${candidatolist}">
+                    <tr>  
+                        <td th:text = "${candidato.id}"></td>
+                        <td th:text = "${candidato.nome}"></td>
+                        <td th:text = "${candidato.cargo}"></td>
+                        <td th:text = "${candidato.partido}"></td>
+                        <td><button type="submit" id="alterar" formmethod="get"  th:formaction="@{/candidato/alterar/{id}(id=${candidato.id})}">Alterar</button> </td>
+                        <td><button type="submit" id="excluir" formmethod="get"  th:formaction="@{/candidato/excluir/{id}(id=${candidato.id})}">Apagar</button> </td>
+                    </tr>
+                </form>
+            </tbody>
+        </table>
+        <form class="center"><input type="submit" method="get" th:formaction="@{/home}"  value="Voltar"/></form>
+     </body>
 </html>

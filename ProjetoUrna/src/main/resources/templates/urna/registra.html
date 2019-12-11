@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html xmlns:th = "http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Urna Eletrônica | Realizar Voto</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style type="text/css">
@@ -81,8 +81,8 @@ and open the template in the editor.
             }
 
             .container td, .container th {
-                      padding-bottom: 2%;
-                      padding-top: 2%;
+                      padding-bottom: 1%;
+                      padding-top: 1%;
               padding-left:2%;  
             }
 
@@ -160,26 +160,30 @@ and open the template in the editor.
         </style>
     </head>
     <body>
-        <br >
-        <fieldset>
-            <legend>Lista de Candidatos</legend>
-            <table border = 1>
+        <br>
+        <h1><span class="azul">Lista de Candidatos</span></h1>
+        <table class="container">
+            <thead>
                 <tr>
-                    <td>id</td>
-                    <td>nome</td>
-                    <td>cargo</td>
-                    <td>partido</td>
-                    <td colspan="3"> ações</td>
+                    <th ><h1>ID</h1></th>
+                    <th ><h1>Nome</h1></th>
+                    <th ><h1>Cargo</h1></th>
+                    <th ><h1>Partido</h1></th>
+                    <th ><h1>Escolha</h1></th>
                 </tr>
-                <form   th:each= "candidato : ${candidatolist}">
-                        <TR>  
-                            <td th:text = "${candidato.id}"></td>
-                            <td th:text = " ${candidato.nome}"></td>
-                            <td th:text = " ${candidato.cargo}"></td>
-                            <td th:text = " ${candidato.partido}"></td>
-                            <td><button type="submmit" formmethod="post"  th:formaction="@{/urna/cadastra/{ele}/{id}(id=${candidato.id},ele= ${eleitor})}">Votar</button> </td>
-                        </tr>
-                </table>
+            </thead>
+            <tbody>
+                <form th:each= "candidato : ${candidatolist}">
+                    <TR>  
+                        <td th:text = "${candidato.id}"></td>
+                        <td th:text = "${candidato.nome}"></td>
+                        <td th:text = "${candidato.cargo}"></td>
+                        <td th:text = "${candidato.partido}"></td>
+                        <td><button type="submit" id="alterar" formmethod="post"  th:formaction="@{/urna/cadastra/{ele}/{id}(id=${candidato.id},ele= ${eleitor})}">Votar</button> </td>
+                    </tr>
+                </form>        
+            </tbody>
+        </table>
         </fieldset>
           </form>
         </br>

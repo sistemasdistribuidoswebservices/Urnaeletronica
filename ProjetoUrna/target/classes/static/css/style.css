@@ -1,0 +1,102 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 10/12/2019, 23:39:58
+    Author     : Alvaro
+*/
+@charset "utf-8";
+	@import url('https://fonts.googleapis.com/css?family=Aldrich|Armata|Cutive+Mono|IBM+Plex+Mono|Iceland|Nova+Square|Orbitron|Play|Quattrocento|Quattrocento+Sans|Ubuntu|VT323');
+	/* possiveis fontes para uso.
+		VT323
+		Ubuntu
+		Quattrocento Sans
+		Quattrocento
+		Play
+		Orbitron
+		Nova Square
+		Iceland
+		IBM Plex Mono
+		Cutive Mono
+		Aldrich
+		Armata
+		Century
+	*/
+	@viewport{
+
+	}
+
+	@media screen and (max-width:2560px) {
+		h1 { font-size: 3.8rem; }
+		h2 { font-size: 3.4rem; }
+		h3 { font-size: 3rem; }
+		h4 { font-size: 2.6rem; }
+	 	body {font-size: 2.2rem;}
+	 	a  { font-size:2.2rem; }
+	}
+	@media screen and (max-width:1920px) {
+		h1 { font-size: 3.3rem; }
+		h2 { font-size: 2.9rem; }
+		h3 { font-size: 2.6rem; }
+		h4 { font-size: 2.3rem; }
+	 	body {font-size: 1.9rem;}
+	 	a  { font-size:1.9rem; }
+	}
+	
+	@media screen and (max-width:1440px) {
+		h1 { font-size: 2.6rem; }
+		h2 { font-size: 2.1rem; }
+		h3 { font-size: 1.8rem; }
+		h4 { font-size: 1.5rem; }
+	 	body {font-size: 1.2rem;}
+	 	a  { font-size:1.2rem; }
+	}
+	@media screen and (max-width: 1280px) {
+		h1 { font-size: 2.3rem; }
+		h2 { font-size: 2rem; }
+		h3 { font-size: 1.7rem; }
+		h4 { font-size: 1.3rem; }
+	 	body {font-size: 1rem;}
+		a  { font-size: 1rem; }
+	}
+
+.menu{
+		width: 300px;
+		height: 100%;
+		border: none;
+		position: absolute;
+		}
+	.example1 {
+	  	max-height: 100%;
+	  	height: auto;
+	  	width: auto;
+	  	bottom: 0;
+		left: 0;
+		top: 0;
+	  	position: absolute;
+	  	z-index: 2;
+	  	opacity: 0.8;
+	  	}
+	.example2 {
+	  	height: 100%;
+	  	width: 95%;
+	  	left: 0;
+	  	top: 0;
+	  	right: 0;
+	  	bottom: 0;
+	  	resize: both;
+	  	z-index: 0;
+	  	overflow: hidden;
+	  	overflow-x: hidden;
+	  	overflow-y: hidden;
+		}
+	iframe {
+	  	width: 100%;
+	  	height: 100%;
+	  	border: none;
+	  	position: absolute;
+	  	top: 0;
+                left: 0;
+		}

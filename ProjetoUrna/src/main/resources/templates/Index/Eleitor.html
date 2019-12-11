@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<HTML>
+	<HEAD>
+		 <TITLE>Administrador</TITLE>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+                
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+		
+	</HEAD>
+	<body>
+	
+
+		  
+		
+ 		<div class="example12" >
+ 			<iframe   name = "Carrega" th:src="@{/logado}"  frameborder="0" allowfullscreen></iframe>
+ 		</div>
+            
+            <div class="example1" >
+ 			<iFRAME  class="menu" name = "Principal" th:src="@{/conta/eleitormenu/{id}(id = ${eleitor})}"  src="/conta/eleitormenu" frameborder="0" scrolling="yes" ></iFRAME>
+ 		</div > 
+ 		
+
+	</body>
+
+</html>

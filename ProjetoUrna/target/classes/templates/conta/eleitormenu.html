@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Eleitor menu</title>
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" th:href="@{/css/2style.css}">
+        <script  src="javascript/5dc6c19131.js" th:src="@{/javascript/5dc6c19131.js}"/></script>
+    </head>
+    <body class="prin">
+        
+        <input type="checkbox" id="check" >
+        <label class="icone" for="check"><i class="fa fa-bars" aria-hidden="true"></i></label>
+
+        <div class="barra">Menu do Eleitor<br><br>
+        <a th:href="@{/eleitor/eleitor/{id} (id= ${eleitor})}"  target="Carrega">Controle de candidatos</a><br>
+        <a  th:href="@{/urna/votos}" target="Carrega" >Votos</a><br>
+        <a th:href="@{/urna/registra/{id} (id= ${eleitor})}"  target="Carrega">Votar</a>
+        
+        </div>
+    </body>
+</html>

@@ -81,8 +81,8 @@ and open the template in the editor.
             }
 
             .container td, .container th {
-                      padding-bottom: 2%;
-                      padding-top: 2%;
+                      padding-bottom: 1%;
+                      padding-top: 1%;
               padding-left:2%;  
             }
 
@@ -176,15 +176,15 @@ and open the template in the editor.
                 <form th:each= "candidato : ${candidatolist}">
                     <tr>
                         <td th:text = "${candidato.id}"></td>
-                        <td th:text = " ${candidato.nome}"></td>
-                        <td th:text = " ${candidato.cargo}"></td>
-                        <td th:text = " ${candidato.partido}"></td>
+                        <td th:text = "${candidato.nome}"></td>
+                        <td th:text = "${candidato.cargo}"></td>
+                        <td th:text = "${candidato.partido}"></td>
                         <td><button type="submit" id="alterar" formmethod="get"  th:formaction="@{/candidatos/alterar/{id}(id=${candidato.id})}">Alterar</button> </td>
                         <td><button type="submit" id="excluir" formmethod="get"  th:formaction="@{/candidatos/excluir/{id}(id=${candidato.id})}">Excluir</button> </td>
                     </tr>
                 </form>
             </tbody>
         </table>
-        <div class="center"><input type="submit" method="get" th:formaction="@{/candidatos/cadastra}"  value="Novo Candidato"/></div>
+        <form class="center"><input type="submit" method="get" th:formaction="@{/candidatos/cadastra}"  value="Novo Candidato"/></form>
     </body>
 </html>

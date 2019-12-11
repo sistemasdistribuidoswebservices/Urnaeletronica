@@ -9,6 +9,12 @@ and open the template in the editor.
         <title>Urna Eletrônica | Cadastro de Eleitor</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+            function aviso()
+            {
+            alert("Eleitor cadastrado com sucesso!");
+            }
+        </script>
         <style type="text/css">
             /* CSS reset */
             *, *:before, *:after { 
@@ -91,7 +97,7 @@ and open the template in the editor.
                 transition: all 0.2s linear;
               }
               button[id="gravar"]{
-                width: 75%!important;
+                width: 80%!important;
                 cursor: pointer;  
                 background: #0ec21b;
                 padding: 8px 5px;
@@ -117,7 +123,7 @@ and open the template in the editor.
                 padding: 8px;
                 color: #c42525;
                 margin-left: 10px;
-                border: 1px solid #c42525;
+                
 
                 
                 font-size: 20px;
@@ -152,8 +158,8 @@ and open the template in the editor.
 			<label for="senha">Senha:</label>
 			<input type="password" id="senha" th:field="*{senha}" placeholder="ex. senha123"/>
                     </p>
-                    <button id="gravar" type="submit">Gravar</button> 
-                    <button id="voltar" type="submit" formmethod="get"  th:formaction="@{/eleitores/eleitores}">Cancelar</button>
+                    <button id="gravar" type="submit" onclick="aviso()">Gravar</button> 
+                    <button type="submit" id="voltar" formmethod="get"  th:formaction="@{/eleitores/eleitores}">Voltar</button>
                 </form>
             </div>
 	</div>

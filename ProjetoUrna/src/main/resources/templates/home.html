@@ -16,10 +16,12 @@ and open the template in the editor.
         
         <h3>O sistmea de voto baseia no sistema que registra candidatos, eletores e o votos para apuração</h3>
         <br>
-        <div class="btn btn-lg btn-dark text-white"><a class="text-white" th:href="@{/clogin}">Login como Candidato</a></div><br><br>
+        <div class="btn btn-lg btn-dark text-white"><a class="text-white" th:href="@{/clogin}">Login como Candidato</a></div><br>
+        <a class="text-dark" th:href="@{/1candidato/cadastra}">Cadastro de Candidato</a><br><br>
         
-        <div class="btn btn-lg btn-secondary text-white"><a class="text-white" th:href="@{/elogin}" >Login como Eleitor</a></div><br><br>
-            
+        <div class="btn btn-lg btn-secondary text-white"><a class="text-white" th:href="@{/elogin}" >Login como Eleitor</a></div><br>
+        <a class="text-dark" th:href="@{/1eleitor/cadastra}">Cadastro de Eleitor</a><br><br>    
         <div class="btn btn-lg btn-success text-dark"><a class="text-white" th:href="@{/urna/votos}" >Apuração</a></div>
     </body>
 </html>
+

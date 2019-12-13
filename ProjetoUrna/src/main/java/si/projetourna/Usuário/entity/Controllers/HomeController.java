@@ -161,7 +161,7 @@ public class HomeController {
         ModelAndView mv = new ModelAndView();
         Eleitor Eleitor = eleitorrepository.findByEmail(eleitor.getEmail());
         if(Eleitor.getSenha().equals(eleitor.getSenha())&& Eleitor.getEmail().equalsIgnoreCase(eleitor.getEmail()))
-            mv.setViewName("redirect:/Index/Candidato/"+Eleitor.getID());
+            mv.setViewName("redirect:/Index/Eleitor/"+Eleitor.getID());
         else{
             mv.setViewName("/errolog");
             mv.addObject("erro","Tentativa de Login como Eleitor esta incorreta.\n Logue-se novamente");
